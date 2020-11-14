@@ -2,19 +2,19 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args) {
-        Map<Integer, List<Integer>> playerMap= new HashMap<Integer, List<Integer>>();
         int[] winners = {0, 0, 0, 0};
-        initialize(playerMap);
-        Player player1 = new Player(1, playerMap.get(1));
-        Player player2 = new Player(2, playerMap.get(2));
-        Player player3 = new Player(3, playerMap.get(3));
-        Player player4 = new Player(4, playerMap.get(4));
         for (int i = 0; i <= 50; i++) {
+            Map<Integer, List<Integer>> playerMap= new HashMap<Integer, List<Integer>>();
+            initialize(playerMap);
+            Player player1 = new Player(1, playerMap.get(1));
+            Player player2 = new Player(2, playerMap.get(2));
+            Player player3 = new Player(3, playerMap.get(3));
+            Player player4 = new Player(4, playerMap.get(4));
             int winner = play(player1, player2, player3, player4);
             winners[winner - 1]++;
         }
         for (int i: winners) {
-            System.out.println(i);
+           System.out.println(i);
         }
         System.out.println("finished");
     }
@@ -53,7 +53,7 @@ public class App {
         // when player calls, compare last play of cards to claimed 
         List<Integer> placedCard = new ArrayList<Integer>();
         int curr_match = 1;
-        int time = 1;
+        //int time = 1;
         while (player1.left() != 0 && player2.left() != 0 && player3.left() != 0  && player4.left() != 0 ) {
             if (curr_match >= 14) {
                 curr_match = 1;
@@ -63,9 +63,9 @@ public class App {
             player2.strategy2(placedCard, curr_match, player1);
             player3.strategy1(placedCard, curr_match, player2);
             player4.strategy2(placedCard, curr_match, player3);
-            System.out.println(time);
+            //System.out.println(time);
             curr_match++;
-            time++;
+            //time++;
         }
 
         if (player1.left() == 0) {
