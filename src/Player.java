@@ -2,13 +2,14 @@ import java.util.*;
 
 public class Player {
     private int id;
+    // cards holding in the hand
     private List<Integer> cards;
-    private List<Integer> previous;
+    // card put down by the player
+    private List<Integer> putCard;
 
     public Player(int id, List<Integer> cards) {
         this.id = id;
         this.cards = cards;
-        this.previous = new ArrayList<Integer>();
     }
     
     public int getId() {
@@ -76,7 +77,7 @@ public class Player {
             if(id == 1){
                 curr_match --;
             }
-            for (int last_play : previous){
+            for (int last_play : previousPlayer.putCard){
                 if((last_play - curr_match) % 13 != 0){
                     all_match = false;
                     break;
@@ -88,12 +89,8 @@ public class Player {
                 previousPlayer.getCards().addAll(placedCard);
             }
             placedCard.clear();
-            previous.clear();
-        }else{
-            return;
-            //do nothing
+            previousPlayer.putCard.clear();
         }
-
     }
     
     /*
@@ -127,7 +124,8 @@ public class Player {
         }
         cards.remove(matches.get(0));
         placedCard.add(matches.get(0));
-        previous = new ArrayList<Integer>(matches.get(0));
+        this.putCard = new ArrayList<Integer>();
+        this.putCard.add(matches.get(0));
     }
 
     public void put2(List<Integer> placedCard, int curr_match){
@@ -142,7 +140,7 @@ public class Player {
         }
         cards.removeAll(matches);
         placedCard.addAll(matches);
-        previous = matches;
+        putCard = matches;
     }
 
     /*
