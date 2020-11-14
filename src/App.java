@@ -47,28 +47,25 @@ public class App {
         List<Integer> placedCard = new ArrayList<Integer>();
         int curr_match = 1;
         int time = 0;
-        while (player1.left() != 0 || player2.left() != 0 || player3.left() != 0  || player4.left() != 0 ){
-            
+        //while (player1.left() != 0 || player2.left() != 0 || player3.left() != 0  || player4.left() != 0 ){
+        while (time <= 14)   
             if (curr_match >= 13) {
                 curr_match = 1;
             }
 
             player1.strategy1(placedCard, curr_match, player4);
+            System.out.println(player1);
+            System.out.println(placedCard);
             player2.strategy2(placedCard, curr_match, player1);
+            System.out.println(player2);
+            System.out.println(placedCard);
             player3.strategy1(placedCard, curr_match, player2);
+            System.out.println(player3);
+            System.out.println(placedCard);
             player4.strategy2(placedCard, curr_match, player3);
-            curr_match++;
-            time++;
-        }
-        
-        if(player1.left() == 0){
-            System.out.println("play 1 won" + time);
-        } else if(player2.left() == 0){
-            System.out.println("play 2 won" + time);
-        } else if(player3.left() == 0){
-            System.out.println("play 3 won" + time);
-        } else {
-            System.out.println("play 4 won" + time);
-        } 
-    }
+            System.out.println(player4);
+            System.out.println(placedCard);
+            //System.out.println("play 4 won" + time);
+    } 
 }
+
