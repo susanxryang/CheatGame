@@ -138,12 +138,12 @@ public class Player {
             while (find_match <= 13 && matches.isEmpty()) {
                 find_match ++;
                 matches = contain(find_match);
-            }            
+            }           
+            matches = new ArrayList<>(matches.get(0));
         }
-        cards.remove(matches.get(0));
-        placedCard.add(matches.get(0));
-        // only put one card
-        putCard = matches.subList(0, 1);
+        cards.removeAll(matches);
+        placedCard.addAll(matches);
+        putCard = matches;
     }
 
     // if match, put all matching cards
@@ -184,7 +184,6 @@ public class Player {
         }
         cards.removeAll(matches);
         placedCard.addAll(matches);
-        // update 
         putCard = matches;
     }
     
